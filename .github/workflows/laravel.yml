@@ -26,7 +26,7 @@ jobs:
     - name: Install Node Dependencies
       run: npm install --verbose
     - name: Build Assets
-      run: npm run build
+      run: npm run build 2>&1
     - name: Generate key
       run: php artisan key:generate
     - name: Directory Permissions
