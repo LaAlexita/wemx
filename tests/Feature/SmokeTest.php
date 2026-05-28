@@ -9,6 +9,13 @@ class SmokeTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config(['app.installed' => true]);
+    }
+
     public function test_login_page_loads(): void
     {
         $this->get('/auth/login')->assertStatus(200);
@@ -33,5 +40,12 @@ class SmokeTest extends TestCase
 
         $this->assertContains($response->status(), [302, 401, 403],
             'Unauthenticated /admin access must not return 200.');
+    }
+
+    public function test_install_redirect_when_not_installed(): void
+    {
+        config(['app.installed' => false]);
+
+        $this->get('/auth/login')->assertRedirect(route('install.index'));
     }
 }
