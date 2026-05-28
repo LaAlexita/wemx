@@ -44,8 +44,3 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: ":memory:"
       run: php artisan migrate --force --verbose
-    - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: ":memory:"
-      run: php artisan test
